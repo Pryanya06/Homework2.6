@@ -2,7 +2,7 @@ package com.example.Homework26.service;
 
 import com.example.Homework26.exception.EmployeeAlreadyAddedException;
 import com.example.Homework26.exception.EmployeeNotFoundException;
-import com.example.Homework26.model.employee;
+import com.example.Homework26.model.Employee;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final List <employee> employees = new ArrayList<>();
+    private final List <Employee> employees = new ArrayList<>();
 
 
     @Override
-    public employee add(String firstName, String lastName) {
-      employee employee = new employee(firstName, lastName);
+    public Employee add(String firstName, String lastName) {
+      Employee employee = new Employee(firstName, lastName);
 
       if (employees.contains(employee)) {
           throw new EmployeeAlreadyAddedException();
@@ -26,8 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public employee remove(String firstName, String lastName) {
-        employee employee = new employee ( firstName, lastName);
+    public Employee remove(String firstName, String lastName) {
+        Employee employee = new Employee( firstName, lastName);
         if (employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
@@ -37,8 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public employee find(String firstName, String lastName) {
-        employee employee = new employee ( firstName, lastName);
+    public Employee find(String firstName, String lastName) {
+        Employee employee = new Employee( firstName, lastName);
         if (employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Collection<employee> findAll() {
+    public Collection<Employee> findAll() {
         return employees;
     }
 }
