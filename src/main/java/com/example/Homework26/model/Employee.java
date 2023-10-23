@@ -3,7 +3,7 @@ package com.example.Homework26.model;
 import java.util.Objects;
 import java.util.Random;
 
-public class employee {
+public class Employee {
     private final String firstName;
     private  final String lastName;
     private Integer salary;
@@ -11,14 +11,14 @@ public class employee {
 
     private final Random random = new Random();
 
-    public employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = random.nextInt(10000) + 1000;
         this.departmentId = random.nextInt(5) + 1;
     }
 
-    public employee(String firstName, String lastName, Integer salary, Integer departmentId) {
+    public Employee (String firstName, String lastName, Integer salary, Integer departmentId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -32,6 +32,7 @@ public class employee {
     public String getLastName() {
         return lastName;
     }
+    public String getFullName() { return firstName + " " + lastName; }
 
     public Integer getSalary() {
         return salary;
@@ -52,7 +53,7 @@ public class employee {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof employee employee)) return false;
+        if (!(o instanceof Employee employee)) return false;
         return Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getLastName(), employee.getLastName()) && Objects.equals(getSalary(), employee.getSalary()) && Objects.equals(getDepartmentId(), employee.getDepartmentId());
     }
 

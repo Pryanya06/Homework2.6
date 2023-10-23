@@ -1,12 +1,12 @@
 package com.example.Homework26.service;
 
-import com.example.Homework26.model.employee;
+import com.example.Homework26.model.Employee;
 
 import java.util.Collection;
 
 public interface EmployeeService {
-    employee add(String firstName, String lastName);
-    employee remove( String firstName, String lastName);
-    employee find( String firstName, String lastName);
-    Collection <employee> findAll();
+    Employee add(String firstName, String lastName);
+    Employee remove(String firstName, String lastName);
+    Employee find(String firstName, String lastName);
+    Collection <Employee> findAll();
 }

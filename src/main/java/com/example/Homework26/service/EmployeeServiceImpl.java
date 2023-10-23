@@ -2,51 +2,49 @@ package com.example.Homework26.service;
 
 import com.example.Homework26.exception.EmployeeAlreadyAddedException;
 import com.example.Homework26.exception.EmployeeNotFoundException;
-import com.example.Homework26.model.employee;
+import com.example.Homework26.model.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final List <employee> employees = new ArrayList<>();
+    private final Map < String, Employee> employees = new HashMap<>();
 
 
     @Override
-    public employee add(String firstName, String lastName) {
-      employee employee = new employee(firstName, lastName);
+    public Employee add(String firstName, String lastName) {
+      Employee employee = new Employee(firstName, lastName);
 
-      if (employees.contains(employee)) {
+      if (employees.containsKey(employee.getFullName())) {
           throw new EmployeeAlreadyAddedException();
       }
-      employees.add(employee);
+      employees.put(employee.getFullName(),employee);
       return employee;
     }
 
     @Override
-    public employee remove(String firstName, String lastName) {
-        employee employee = new employee ( firstName, lastName);
-        if (employees.contains(employee)) {
+    public Employee remove(String firstName, String lastName) {
+        Employee employee = new Employee( firstName, lastName);
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException();
         }
 
-        employees.remove(employee);
+        employees.remove(employee.getFullName());
         return employee;
     }
 
     @Override
-    public employee find(String firstName, String lastName) {
-        employee employee = new employee ( firstName, lastName);
-        if (employees.contains(employee)) {
+    public Employee find(String firstName, String lastName) {
+        Employee employee = new Employee( firstName, lastName);
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException();
         }
         return employee;
     }
 
     @Override
-    public Collection<employee> findAll() {
-        return employees;
+    public Collection<Employee> findAll() {
+        return employees.values();
     }
 }
