@@ -32,6 +32,7 @@ public class Employee {
     public String getLastName() {
         return lastName;
     }
+    public String getFullName() { return firstName + " " + lastName; }
 
     public Integer getSalary() {
         return salary;
